@@ -10,6 +10,66 @@
      */
     using System;
     using System.Collections.Generic;
+    using System;
+
+    namespace Ronaldo_Autos
+    {
+        public class Cliente
+        {
+            public string Nome { get; private set; }
+            public string Endereco { get; private set; }
+            public string Telefone { get; private set; }
+            public DateTime DataNascimento { get; private set; }
+
+            public void DefinirInformacoes(string no, string ende, string tele, DateTime dataN)
+            {
+                Nome = no;
+                Endereco = ende;
+                Telefone = tele;
+                DataNascimento = dataN;
+            }
+
+            public void ExibirInformacoes()
+            {
+                Console.WriteLine("\nInformações do Cliente:");
+                Console.WriteLine($"Nome: {Nome}");
+                Console.WriteLine($"Endereço: {Endereco}");
+                Console.WriteLine($"Telefone: {Telefone}");
+                Console.WriteLine($"Data de Nascimento: {DataNascimento.ToShortDateString()}");
+            }
+        }
+
+        class Program
+        {
+            static void Main(string[] args)
+            {
+                Cliente cliente = new Cliente();
+
+                Console.WriteLine("Por favor, insira as informações do cliente:");
+
+                Console.Write("Nome: ");
+                string nome = Console.ReadLine();
+
+                Console.Write("Endereço: ");
+                string endereco = Console.ReadLine();
+
+                Console.Write("Telefone: ");
+                string telefone = Console.ReadLine();
+
+                Console.Write("Data de Nascimento (dd/MM/yyyy): ");
+                DateTime dataNascimento;
+                while (!DateTime.TryParse(Console.ReadLine(), out dataNascimento))
+                {
+                    Console.Write("Data de Nascimento inválida. Por favor, insira novamente (dd/MM/yyyy): ");
+                }
+
+                cliente.DefinirInformacoes(nome, endereco, telefone, dataNascimento);
+
+                cliente.ExibirInformacoes();
+            }
+        }
+    }
+
     class Veiculo
     {
         public string Placa { get; set; }
